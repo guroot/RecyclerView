@@ -13,7 +13,7 @@ import android.widget.TextView;
  * Dans ce cas-ci, nous lui passons MainAdapter.ViewHolder,
  */
 public class MainAdapter extends Adapter<MainAdapter.ViewHolder> {
-    private String[] mDataset;
+    private String[] dataSet;
 
 
     // Fournit une référence aux vues pour chaque élément de données
@@ -32,13 +32,17 @@ public class MainAdapter extends Adapter<MainAdapter.ViewHolder> {
 
     // Constructeur
     public MainAdapter(String[] myDataset) {
-        mDataset = myDataset;
+        dataSet = myDataset;
     }
 
     // Génère ne nouvelles vues (invoqué par le layout manager)
     @Override
     public MainAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
+
+        //
+        // Instancie un fichier XML de Layout dans les objets View correspondants.
+        //
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.list_cell, parent, false);
         return new ViewHolder(view);
@@ -47,16 +51,15 @@ public class MainAdapter extends Adapter<MainAdapter.ViewHolder> {
     // Remplace le contenu d'une vue (invoqué par le layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.name.setText(mDataset[position]);
+        // Remplace le texte de la vue
+        holder.name.setText(dataSet[position]);
 
     }
 
     // Doit retourner la largeur(size) du dataset (invoqué par le layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return dataSet.length;
     }
 
 
