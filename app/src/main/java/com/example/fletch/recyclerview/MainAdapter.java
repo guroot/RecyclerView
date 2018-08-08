@@ -1,6 +1,5 @@
 package com.example.fletch.recyclerview;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
@@ -8,30 +7,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+
+/**
+ * La classe nécessite un générique.
+ * Dans ce cas-ci, nous lui passons MainAdapter.ViewHolder,
+ */
 public class MainAdapter extends Adapter<MainAdapter.ViewHolder> {
     private String[] mDataset;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+
+    // Fournit une référence aux vues pour chaque élément de données
+    // les éléments de données complexes peuvent nécessiter plus d'une vue par élément, et
+    // vous donne accès à toutes les vues d'un élément de données dans un titulaire de vue
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        /* textView qui devra contenir la donnée "nom" */
         private final TextView name;
 
-        // each data item is just a string in this case
-        public TextView mTextView;
         public ViewHolder(View v) {
             super(v);
             name = v.findViewById(R.id.textView_Nom);
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+    // Constructeur
     public MainAdapter(String[] myDataset) {
         mDataset = myDataset;
     }
 
-    // Create new views (invoked by the layout manager)
+    // Génère ne nouvelles vues (invoqué par le layout manager)
     @Override
     public MainAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
@@ -40,7 +44,7 @@ public class MainAdapter extends Adapter<MainAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    // Remplace le contenu d'une vue (invoqué par le layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
@@ -49,7 +53,7 @@ public class MainAdapter extends Adapter<MainAdapter.ViewHolder> {
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    // Doit retourner la largeur(size) du dataset (invoqué par le layout manager)
     @Override
     public int getItemCount() {
         return mDataset.length;
